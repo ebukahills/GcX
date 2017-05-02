@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="WhyTech, Gbaski Sales Nigeria">
+  <title>GiftCardX | Coming Soon!</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/responsive.css" rel="stylesheet">
+
+  <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+    <![endif]-->
+  <link rel="shortcut icon" href="images/ico/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head>
+<!--/head-->
+
+<body>
+  <div class="logo-image">
+    <a href="index.html"><img class="img-responsive" src="images/logo.png" alt="GiftCardX Logo"> </a>
+  </div>
+  <section id="coming-soon">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <div class="text-center coming-content">
+            <h1>COMING SOON</h1>
+            <p style="font-size: 1.2em" > <b>GiftCardX</b> is about to Go Live! <br> 
+              We are creating a platform for people to easily Discover, Buy and Sell  <b>Gift Cards</b>  
+              for Cash and other Digital Currencies. We are so excited
+              about this project and cannot wait to go Live! Join our mailing list or follow us on<br /> 
+              Twitter or Instagram
+              to stay up to date.</p>
+            <div class="social-link">
+              <span><a href="#"><i class="fa fa-instagram"></i></a></span>
+              <span><a href="#"><i class="fa fa-twitter"></i></a></span>
+              <span><a href="#"><i class="fa fa-google-plus"></i></a></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="time-count">
+            <ul id="countdown">
+              <li class="angle-one">
+                <span class="days time-font">00</span>
+                <p>Days</p>
+              </li>
+              <li class="angle-two">
+                <span class="hours time-font">00</span>
+                <p>Hours</p>
+              </li>
+              <li class="angle-three">
+                <span class="minutes time-font">00</span>
+                <p class="minute">Mins</p>
+              </li>
+              <li class="angle-four">
+                <span class="seconds time-font">00</span>
+                <p>Secs</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="subscribe">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="row">
+            <div class="col-sm-6">
+              <h2><i class="fa fa-envelope-o"></i> SUBSCRIBE TO OUR NEWSLETTER</h2>
+              <p>Kindly drop your email and we'll notify you on our progress and Launch date. Early Birds get multiple perks
+                and discounts on the House. <i class="fa fa-smile-o"></i><br /> Invite your friends too! It's totally worth
+                it.</p>
+            </div>
+            <div class="col-sm-6 newsletter">
+              <form id="newsletter">
+                <input class="form-control" id="newsemail" type="email" name="email" value="" placeholder="Enter Your email">
+                <i id="formstate" class="fa fa-check"></i>
+              </form>
+              <p id="newsmessage" >Don't worry we will not use your email for spam</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="coming-soon-footer" class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="text-center">
+          <p>&copy; GiftCardX 2017. All Rights Reserved.</p>
+          <p>Designed by <a target="_blank" href="https://instagr.am/ebuka_hills">WhyTech</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/coundown-timer.js"></script>
+  <script type="text/javascript" src="js/wow.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      //Countdown js
+      $("#countdown").countdown({
+        date: "06 may 2017 12:00:00",
+        format: "on"
+      },
+        function () {
+          // callback function
+        });
+
+      // News Letter Submission
+      $('#newsletter').submit(function (e) {
+        e.preventDefault();
+        $('#formstate').removeClass('fa-check').addClass('fa-spinner fa-spin');
+        var email = $('#newsemail').val();
+        $.post('/api/newsletter', { email, email }, function(res) {
+          console.log(res);
+          $('#formstate').removeClass('fa-spinner fa-spin').addClass('fa-check');
+          $('#newsmessage').html('Thank You for Signing up for Our NewsLetter!');
+        })
+      });
+    })
+  </script>
+
+</body>
+
+</html>
