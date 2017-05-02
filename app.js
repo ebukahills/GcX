@@ -29,6 +29,7 @@ var db = mongoose.connect(process.env.DB_URI, function(err) {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// TODO: Force SSL for all routes
 app.use(helmet());
 app.use(compression());
 app.use(favicon(path.join(__dirname, 'public/images/ico', 'favicon.ico')));
@@ -36,10 +37,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/api', api);
+
+app.use(express.static(path.join(__dirname, "public")));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -56,7 +58,8 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  // Show prettified 404 error page in production => Error details are logged to console
+  process.env.NODE_ENV !== 'production' ? res.render("error") : res.render('error404');
 });
 
 module.exports = app;
