@@ -1,6 +1,5 @@
-var config = process.env.NODE_ENV === 'production' 
-  ? require('./config/config.prod') 
-  : require('./config/config.dev');
+// Initiate Environment Variables with dotenv: https://www.npmjs.com/package/dotenv
+require("dotenv").config();
 
 var express = require('express');
 var path = require('path');
@@ -17,7 +16,7 @@ var api = require('./routes/api');
 
 var app = express();
 
-var db = mongoose.connect(config.DB_URI, function(err) {
+var db = mongoose.connect(process.env.DB_URI, function(err) {
   if (err) {
     console.error(err, 'Error Connecting to Database!');
     process.abort();

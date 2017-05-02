@@ -10,6 +10,7 @@
     "compression": "^1.6.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.0",
+    "dotenv": "^4.0.0",
     "ejs": "~2.5.5",
     "express": "~4.14.1",
     "helmet": "^3.5.0",
