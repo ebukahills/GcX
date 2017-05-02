@@ -1,8 +1,8 @@
-## GiftCardX
+## GiftCardX :gift: :flower_playing_cards: :moneybag:
 #### Gift Cards Exchange Website
 
 To Run Locally:  
-⋅⋅⋅You need to have [NodeJS](https://nodejs.org) and [MongoDB](https://mongodb.com) installed  
+You need to have [NodeJS](https://nodejs.org) and [MongoDB](https://mongodb.com) installed  
 - Clone the repo: `$ git clone https://github.com/flyg101/GcX gcx`
 - Enter the cloned directory `$ cd gcx`
 - Install Dependencies `$ npm install`
