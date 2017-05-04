@@ -132,7 +132,7 @@
   }
 
   .single-price .plan-price {
-    height: 140px;
+    height: 70px;
   }
 
   .single-price .plan-price:after {
@@ -321,7 +321,7 @@
   }
 
   .single-price .plan-price {
-    height: 200px;
+    height: 100px;
     padding-top: 25px;
   }
 
@@ -548,7 +548,7 @@
   }
 
   .single-price .plan-price {
-    height: 110px;
+    height: 55px;
     padding-top: 7px;
   }
 

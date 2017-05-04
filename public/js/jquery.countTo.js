@@ -75,6 +75,7 @@
 	};
 
 	function formatter(value, settings) {
-		return value.toFixed(settings.decimals);
+		// Format value to string concatenated with a '+' at the end
+		return `${value.toFixed(settings.decimals)} +`;
 	}
 }(jQuery));
