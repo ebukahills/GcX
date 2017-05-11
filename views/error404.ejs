@@ -28,7 +28,7 @@
   </div>
 </section>
 <script>
-  console.log('<%- message %>', '<%- err.status %>', '<%- err.stack %>');
+  console.error('<%- message %> \n', '<%- err.status %> \n', '<%- err.stack %> \n');
   // Redirect to Homepage
   setTimeout(function() {
     window.location.replace('/')

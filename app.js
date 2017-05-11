@@ -16,7 +16,7 @@ var api = require('./routes/api');
 
 var app = express();
 
-var db = mongoose.connect(process.env.DB_URI, function(err) {
+var db = mongoose.connect(process.env.DB_URI || 'mongodb://localhost/gcx', function(err) {
   if (err) {
     console.error(err, 'Error Connecting to Database!');
     process.abort();
