@@ -11,19 +11,38 @@ var helmet = require('helmet');
 var compression = require('compression');
 var mongoose = require('mongoose');
 
+var passport = require('passport')
+var LocalStrategy = require('passport-local').Strategy
+var session = require('express-session')
+
+
 var index = require('./routes/index');
 var api = require('./routes/api');
 
 var app = express();
 
-var db = mongoose.connect(process.env.DB_URI || 'mongodb://localhost/gcx', function(err) {
-  if (err) {
-    console.error(err, 'Error Connecting to Database!');
+mongoose.Promise = global.Promise
+var db = mongoose.connect(process.env.DB_URI || 'mongodb://localhost/gcx')
+	.then(() => console.log('Database Connected Successfully. Build Something Awesome!'))
+	.catch((err) => {
+		console.error(err, 'Error Connecting to Database!');
     process.abort();
-  } else {
-    console.log('Database Connected Successfully. Build Something Awesome!')
-  }
-})
+	})
+
+// Passport
+app.use(session({
+	secret: process.env.SESSION_SECRET || 'hidden secrets',
+	resave: false,
+	saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+
+var User = require('./models/User')
+passport.use(new LocalStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -2,7 +2,7 @@ $(function () {
 	// API Caller Utility Function
 	var apiCaller = function (url, data, type = "GET") {
 		return $.ajax({
-			url: url,
+			url: '/api/' + url,
 			data: data,
 			type: type
 		})
@@ -28,22 +28,48 @@ $(function () {
 		$('#forgot-modal').modal()
 	})
 
+	// Signup Logic
+	$('#signupForm').submit((e) => {
+		e.preventDefault()
+		var signupBtn = $('#signupBtn')
+		signupBtn.addClass('fa fa-spin fa-spinner')
+
+		apiCaller('auth/signup', {
+			username: $('#signupEmail').val().trim(),
+			password: $('#password').val().trim(),
+			name: $('#fullName').val().trim(),
+			phone: $('#phoneNumber').val(),
+			country: $('#country').val()
+		}, 'POST')
+		.done((res) => {
+			signupBtn.html('Successful!').fadeOut(2000)
+			console.info(res)
+			// window.location.replace('/account')
+		})
+		.fail((xhr, status, err) => $('#errorMsg').html('Error. Please Try Again'))
+		.always((xhr, status) => signupBtn.removeClass('fa fa-spin fa-spinner'))
+	})
+
 	// Login Logic
 	$('#loginForm').submit((e) => {
 		e.preventDefault();
 		var loginBtn = $('#loginBtn')
 		loginBtn.addClass('fa fa-spin fa-spinner')
 
-		apiCaller('/api/auth/login', {
-			email: $('#loginEmail').val().trim(),
+		apiCaller('auth/login', {
+			username: $('#loginEmail').val().trim(),
 			password: $('#loginPass').val().trim(),
 			remember: $('#remember').is(':checked')
-		}, 'POST').done((res) => {
-			loginBtn.html('Successful!')
-			window.location.replace('/account')
-		}).fail((xhr, status, err) => {
+		}, 'POST')
+		.done((res) => {
+			loginBtn.html('Successful!').fadeOut(2000)
+			console.info(res)
+			// window.location.replace('/account')
+		})
+		.fail((xhr, status, err) => {
 			$('#errorMsg').html('Incorrect Email or Password')
-		}).always((xhr, status) => {
+		})
+		.always((xhr, status) => {
 			loginBtn.removeClass('fa fa-spin fa-spinner')
 		})
 	})
