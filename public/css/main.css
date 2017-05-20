@@ -13,6 +13,10 @@
 	color: red;
 }
 
+.center {
+	text-align: center
+}
+
 /*End Custom CSS*/
 
 body {
@@ -797,8 +801,6 @@ ul.sub-menu {
 .person-thumb {
 	position: relative;
 }
-
-.person-thumb img {}
 
 .social-profile {
 	background: none repeat scroll 0 0 rgba(137, 97, 46, 0.8);
@@ -1743,7 +1745,6 @@ Blog with right sidebar
 Blog with right sidebar
 *****************************/
 
-.masonery_area .single-blog {}
 
 .masonery_area .single-blog .post-thumb {
 	height: auto;

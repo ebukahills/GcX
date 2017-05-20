@@ -38,7 +38,7 @@ $(function () {
 			username: $('#signupEmail').val().trim(),
 			password: $('#password').val().trim(),
 			name: $('#fullName').val().trim(),
-			phone: $('#phoneNumber').val(),
+			phone: $('#phoneNumber').val().toString(),
 			country: $('#country').val()
 		}, 'POST')
 		.done((res) => {

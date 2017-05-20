@@ -9,7 +9,7 @@ var UserSchema = new Schema({
 	username: String,
 	password: String,
 	name: String,
-	phone: Number,
+	phone: String,
 	country: String,
 	transactions: Array,
 	registered: { type: Date, default: Date.now },

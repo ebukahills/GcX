@@ -8,9 +8,9 @@ router.post('/login', login)
 router.post('/signup', signup)
 router.post('/forgot', forgot)
 
-/**
- * Auth Controller Functions
- */
+/*
+* Auth Controller Functions
+*/
 
 function login(req, res, next) {
 	passport.authenticate('local', (err, user, info) => {
@@ -22,7 +22,7 @@ function login(req, res, next) {
 			})
 		}
 		if (!user) {
-			return res.status(404).json({
+			return res.status(401).json({
 				status: false,
 				message: 'User Not Found'
 			})
@@ -54,7 +54,7 @@ function signup(req, res, next) {
 	})
 	User.register(newUser, req.body.password, (err, user) => {
 		if (err) {
-			return res.json({
+			return res.status(401).json({
 				status: false,
 				message: 'Signup Error',
 				data: err
@@ -64,6 +64,7 @@ function signup(req, res, next) {
 	})
 }
 
+// TODO: Forgot Password Reset Route
 function forgot(req, res) {
 	res.end()
 }

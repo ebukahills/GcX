@@ -32,8 +32,8 @@ var db = mongoose.connect(process.env.DB_URI || 'mongodb://localhost/gcx')
 // Passport
 app.use(session({
 	secret: process.env.SESSION_SECRET || 'hidden secrets',
-	resave: false,
-	saveUninitialized: false
+	resave: true,
+	saveUninitialized: true
 }))
 app.use(passport.initialize())
 app.use(passport.session())
